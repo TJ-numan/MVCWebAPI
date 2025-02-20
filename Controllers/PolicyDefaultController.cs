@@ -13,12 +13,14 @@ namespace myWebAPI.Controllers
     {
         IMS_ASTHAEntities db = new IMS_ASTHAEntities();
         
+        // method for getting all data
         [HttpGet]
         public IHttpActionResult GetData()
         {
             List<tbl_claims> list = db.tbl_claims.ToList();
             return Ok(list);
         }
+
 
         // method for limited data
         [HttpGet]
@@ -29,9 +31,10 @@ namespace myWebAPI.Controllers
         }
 
 
-    
 
- 
+
+
+        //  method for limited data with limited columns
         [HttpGet]
         [Route("api/PolicyDefault/Limited/{limit:int}")]
         public IHttpActionResult GetLimitedData(int limit)
@@ -50,6 +53,38 @@ namespace myWebAPI.Controllers
 
             return Ok(result); 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // GetLimitedData mathod with LinQ
+        //[HttpGet]
+        //[Route("api/PolicyDefault/Limited/{limit:int}")]
+        //public IHttpActionResult GetLimitedData(int limit)
+        //{
+        //    var list = db.tbl_claims
+        //                 .Take(limit)
+        //                 .Select(c => new
+        //                 {
+        //                     c.id,
+        //                     c.claim_no,
+        //                     c.project_code,
+        //                     c.claim_category_code,
+        //                     c.claim_date
+        //                 })
+        //                 .ToList();
+
+        //    return Ok(list);
+        //}
 
 
 
