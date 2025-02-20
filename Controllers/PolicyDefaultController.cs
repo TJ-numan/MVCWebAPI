@@ -55,6 +55,32 @@ namespace myWebAPI.Controllers
         }
 
 
+        // Post Mathod for inserting data
+        [HttpPost]
+        [Route("api/PolicyDefault/AddClaimStatus")]
+        public IHttpActionResult AddClaimStatus(tbl_claim_status claimStatus)
+        {
+            if (claimStatus == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            try
+            {
+                // Add data to tbl_claim_status
+                db.tbl_claim_status.Add(claimStatus);
+
+                // Save changes to database
+                db.SaveChanges();
+
+                return Ok("Claim status added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
 
 
 
